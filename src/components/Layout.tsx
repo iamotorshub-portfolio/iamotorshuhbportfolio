@@ -12,6 +12,7 @@ import {
   MessageCircle
 } from "lucide-react";
 import { useState } from "react";
+import logo from "@/assets/logo-ia-motorshub.png";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -33,8 +34,8 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container mx-auto flex h-16 items-center justify-between px-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="font-bold text-xl gradient-text">IA MotorsHub</div>
+          <Link to="/" className="flex items-center">
+            <img src={logo} alt="IA MotorsHub" className="h-10 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}

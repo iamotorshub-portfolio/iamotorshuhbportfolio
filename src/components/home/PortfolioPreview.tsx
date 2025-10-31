@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Quote, ArrowRight } from "lucide-react";
 import caseFord from "@/assets/case-ford.jpg";
+import caseInmobiliaria from "@/assets/case-inmobiliaria.jpg";
+import caseAgencia from "@/assets/case-agencia.jpg";
 
 const cases = [
   {
@@ -27,7 +29,7 @@ const cases = [
     category: "Inmobiliaria",
     title: "170 Leads en 30 Días Sin Ads",
     client: "Inmobiliaria Centro",
-    image: caseFord,
+    image: caseInmobiliaria,
     results: [
       { metric: "170", label: "Leads capturados" },
       { metric: "25%", label: "Tasa respuesta" },
@@ -45,7 +47,7 @@ const cases = [
     category: "Marketing",
     title: "90% Menos Tiempo en Reportes",
     client: "Agencia Digital México",
-    image: caseFord,
+    image: caseAgencia,
     results: [
       { metric: "90%", label: "Menos tiempo" },
       { metric: "$800", label: "Ahorro USD/mes" },
@@ -77,7 +79,11 @@ export const PortfolioPreview = () => {
         </div>
 
         {/* Cases Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        <div className="grid md:grid-cols-3 gap-8 mb-12"
+          style={{ 
+            animation: "fade-in 0.6s ease-out"
+          }}
+        >
           {cases.map((caseStudy, index) => (
             <div
               key={index}
