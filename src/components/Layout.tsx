@@ -34,8 +34,12 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container mx-auto flex h-16 items-center justify-between px-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <img src={logo} alt="IA MotorsHub" className="h-16 w-auto" />
+          <Link to="/" className="flex items-center group">
+            <img 
+              src={logo} 
+              alt="IA MotorsHub" 
+              className="h-20 w-auto transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(0,123,255,0.6)]" 
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -116,8 +120,12 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Column 1: About */}
             <div>
-              <Link to="/" className="inline-block mb-4">
-                <img src={logo} alt="IA MotorsHub" className="h-12 w-auto" />
+              <Link to="/" className="inline-block mb-4 group">
+                <img 
+                  src={logo} 
+                  alt="IA MotorsHub" 
+                  className="h-16 w-auto transition-all duration-300 group-hover:scale-105" 
+                />
               </Link>
               <p className="text-sm text-secondary-foreground/80 mb-4">
                 Soluciones a Medida con Inteligencia Artificial para empresas de Latinoamérica.

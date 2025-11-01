@@ -1,4 +1,5 @@
 import { Target, TrendingUp, Rocket, Award } from "lucide-react";
+import { FloatingText } from "@/components/ui/floating-text";
 
 const stats = [
   {
@@ -34,14 +35,14 @@ export const StatsSection = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
-            <div
-              key={index}
-              className={`p-6 rounded-xl border ${
-                stat.highlight
-                  ? "bg-primary/5 border-primary"
-                  : "bg-card border-border"
-              } hover-lift`}
-            >
+            <FloatingText key={index} delay={index * 100}>
+              <div
+                className={`p-6 rounded-xl border ${
+                  stat.highlight
+                    ? "bg-primary/5 border-primary"
+                    : "bg-card border-border"
+                } hover-lift`}
+              >
               <div className={`inline-flex p-3 rounded-lg mb-4 ${
                 stat.highlight ? "bg-primary/10" : "bg-muted"
               }`}>
@@ -58,7 +59,8 @@ export const StatsSection = () => {
               <div className="text-sm text-muted-foreground">
                 {stat.description}
               </div>
-            </div>
+              </div>
+            </FloatingText>
           ))}
         </div>
       </div>

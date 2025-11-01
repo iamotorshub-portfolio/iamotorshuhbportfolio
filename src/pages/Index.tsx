@@ -6,6 +6,7 @@ import { PortfolioPreview } from "@/components/home/PortfolioPreview";
 import { AutomationSection } from "@/components/home/AutomationSection";
 import { WebPortfolioCarousel } from "@/components/home/WebPortfolioCarousel";
 import { TechStack } from "@/components/home/TechStack";
+import { MarketingBanner } from "@/components/home/MarketingBanner";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 const Index = () => {
@@ -28,6 +29,7 @@ const Index = () => {
 
       <div>
       <HeroSection />
+      <MarketingBanner />
       <StatsSection />
       <ServicesPreview />
       <AutomationSection />

@@ -10,7 +10,9 @@ import {
   CheckCircle,
   Quote
 } from "lucide-react";
-import francoProfile from "@/assets/franco-profile.jpg";
+import { FloatingText } from "@/components/ui/floating-text";
+import { ShimmerText } from "@/components/ui/text-reveal";
+import francoProfile from "@/assets/franco-profile-pro.jpg";
 
 const SobreFranco = () => {
   return (
@@ -28,33 +30,39 @@ const SobreFranco = () => {
         <section className="py-20 bg-gradient-to-br from-secondary via-secondary-light to-secondary text-white">
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <Badge className="mb-4 bg-white/10 text-white border-white/20">
-                  Sobre Franco
-                </Badge>
-                <h1 className="text-5xl md:text-6xl font-black mb-6 leading-tight">
-                  De Director Creativo Global a{" "}
-                  <span className="bg-gradient-to-r from-primary to-info bg-clip-text text-transparent">
-                    Pionero en IA
-                  </span>
-                </h1>
-                <p className="text-xl text-white/80 mb-8">
-                  No vendo tecnología. Vendo resultados medibles con tecnología invisible.
-                </p>
-                <Button size="lg" className="bg-white text-primary hover:bg-white/90" asChild>
-                  <a href="https://calendly.com/franco-iamotorshub/30min" target="_blank" rel="noopener noreferrer">
-                    <Calendar className="mr-2 h-5 w-5" />
-                    Agendar Consulta con Franco
-                  </a>
-                </Button>
-              </div>
-              <div className="relative">
-                <img 
-                  src={francoProfile} 
-                  alt="Franco Larrarte" 
-                  className="rounded-2xl shadow-2xl w-full"
-                />
-              </div>
+              <FloatingText>
+                <div>
+                  <Badge className="mb-4 bg-white/10 text-white border-white/20">
+                    Sobre Franco
+                  </Badge>
+                  <h1 className="text-5xl md:text-6xl font-black mb-6 leading-tight">
+                    De Director Creativo Global a{" "}
+                    <ShimmerText 
+                      text="Pionero en IA" 
+                      className="text-5xl md:text-6xl font-black"
+                    />
+                  </h1>
+                  <p className="text-xl text-white/80 mb-8">
+                    No vendo tecnología. Vendo resultados medibles con tecnología invisible.
+                  </p>
+                  <Button size="lg" className="bg-white text-primary hover:bg-white/90" asChild>
+                    <a href="https://calendly.com/franco-iamotorshub/30min" target="_blank" rel="noopener noreferrer">
+                      <Calendar className="mr-2 h-5 w-5" />
+                      Agendar Consulta con Franco
+                    </a>
+                  </Button>
+                </div>
+              </FloatingText>
+              <FloatingText delay={200}>
+                <div className="relative group">
+                  <img 
+                    src={francoProfile} 
+                    alt="Franco Larrarte - CEO IA MotorsHub" 
+                    className="rounded-2xl shadow-2xl w-full transition-all duration-500 group-hover:scale-105 group-hover:shadow-primary/50"
+                  />
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+              </FloatingText>
             </div>
           </div>
         </section>
@@ -62,9 +70,11 @@ const SobreFranco = () => {
         {/* Credentials */}
         <section className="py-20 bg-background">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-black text-center mb-12">
-              Credenciales y Logros
-            </h2>
+            <FloatingText>
+              <h2 className="text-4xl font-black text-center mb-12">
+                Credenciales y <ShimmerText text="Logros" className="text-4xl font-black" />
+              </h2>
+            </FloatingText>
             <div className="grid md:grid-cols-4 gap-8">
               {[
                 {
@@ -112,9 +122,11 @@ const SobreFranco = () => {
         {/* Timeline */}
         <section className="py-20 bg-muted/50">
           <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-black text-center mb-12">
-              Mi Trayectoria
-            </h2>
+            <FloatingText>
+              <h2 className="text-4xl font-black text-center mb-12">
+                Mi <ShimmerText text="Trayectoria" className="text-4xl font-black" />
+              </h2>
+            </FloatingText>
             <div className="max-w-4xl mx-auto space-y-8">
               {[
                 {

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { FloatingText } from "@/components/ui/floating-text";
+import { ShimmerText } from "@/components/ui/text-reveal";
 import { 
   Bot, 
   Film, 
@@ -82,24 +84,26 @@ export const ServicesPreview = () => {
     <section className="py-20 bg-muted/50">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-block text-sm font-semibold text-primary mb-4">
-            Nuestros Servicios
+        <FloatingText>
+          <div className="text-center mb-16">
+            <div className="inline-block text-sm font-semibold text-primary mb-4">
+              Nuestros Servicios
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black mb-4">
+              Soluciones IA que{" "}
+              <ShimmerText text="Multiplican Resultados" className="text-4xl md:text-5xl font-black" />
+            </h2>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black mb-4">
-            Soluciones IA que{" "}
-            <span className="gradient-text">Multiplican Resultados</span>
-          </h2>
-        </div>
+        </FloatingText>
 
         {/* Main Services Grid */}
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           {mainServices.map((service, index) => (
-            <Link 
-              key={index} 
-              to={service.link}
-              className="group"
-            >
+            <FloatingText key={index} delay={index * 150}>
+              <Link 
+                to={service.link}
+                className="group block h-full"
+              >
               <div className="h-full bg-card border border-border rounded-xl overflow-hidden hover-lift">
                 {/* Image */}
                 <div className="relative h-48 overflow-hidden">
@@ -151,6 +155,7 @@ export const ServicesPreview = () => {
                 </div>
               </div>
             </Link>
+            </FloatingText>
           ))}
         </div>
 

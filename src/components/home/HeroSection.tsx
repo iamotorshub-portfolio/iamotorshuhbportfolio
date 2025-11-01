@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Calendar, PlayCircle, Sparkles, CheckCircle } from "lucide-react";
+import { FloatingText } from "@/components/ui/floating-text";
+import { ShimmerText } from "@/components/ui/text-reveal";
 import heroDashboard from "@/assets/hero-dashboard.jpg";
 
 export const HeroSection = () => {
@@ -15,30 +17,38 @@ export const HeroSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Content */}
-          <div className="space-y-8 animate-fade-in">
+          <div className="space-y-8">
             {/* Badge with glow */}
-            <div className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium border border-primary/20 hover:bg-primary/20 transition-all duration-300 hover:shadow-lg hover:shadow-primary/50">
-              <Sparkles className="h-4 w-4 animate-pulse" />
-              <span>Transformación Digital con IA</span>
-            </div>
+            <FloatingText delay={0}>
+              <div className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium border border-primary/20 hover:bg-primary/20 transition-all duration-300 hover:shadow-lg hover:shadow-primary/50">
+                <Sparkles className="h-4 w-4 animate-pulse" />
+                <span>Transformación Digital con IA</span>
+              </div>
+            </FloatingText>
 
-            {/* Headline with gradient animation */}
-            <h1 className="text-4xl md:text-6xl font-black leading-tight text-white">
-              Transformamos Empresas en{" "}
-              <span className="bg-gradient-to-r from-primary via-info to-primary bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
-                Máquinas de Ventas
-              </span>{" "}
-              con Inteligencia Artificial
-            </h1>
+            {/* Headline with shimmer animation */}
+            <FloatingText delay={200}>
+              <h1 className="text-4xl md:text-6xl font-black leading-tight text-white">
+                Transformamos Empresas en{" "}
+                <ShimmerText 
+                  text="Máquinas de Ventas" 
+                  className="text-4xl md:text-6xl font-black"
+                />{" "}
+                con Inteligencia Artificial
+              </h1>
+            </FloatingText>
 
             {/* Subheadline */}
-            <p className="text-lg md:text-xl text-white/80">
-              Asistentes IA, Storyboards Cinematográficos, Automatización y Apps Personalizadas 
-              para Empresas de Latinoamérica
-            </p>
+            <FloatingText delay={400}>
+              <p className="text-lg md:text-xl text-white/80">
+                Asistentes IA, Storyboards Cinematográficos, Automatización y Apps Personalizadas 
+                para Empresas de Latinoamérica
+              </p>
+            </FloatingText>
 
             {/* CTAs with hover effects */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <FloatingText delay={600}>
+              <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 size="lg" 
                 className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white shadow-lg shadow-primary/50 hover:shadow-primary/70 hover:scale-105 transition-all duration-300"
@@ -60,10 +70,12 @@ export const HeroSection = () => {
                   Ver Casos de Éxito
                 </a>
               </Button>
-            </div>
+              </div>
+            </FloatingText>
 
             {/* Trust indicators with animation */}
-            <div className="flex flex-wrap gap-6 pt-4">
+            <FloatingText delay={800}>
+              <div className="flex flex-wrap gap-6 pt-4">
               {[
                 { label: "170+ Leads Generados" },
                 { label: "25-30% Tasa Respuesta" },
@@ -78,7 +90,8 @@ export const HeroSection = () => {
                   <span className="text-sm font-medium">{item.label}</span>
                 </div>
               ))}
-            </div>
+              </div>
+            </FloatingText>
           </div>
 
           {/* Visual with 3D effect */}
