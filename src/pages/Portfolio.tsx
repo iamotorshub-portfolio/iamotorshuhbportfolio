@@ -2,7 +2,12 @@ import { Helmet } from "react-helmet";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Quote, ArrowRight } from "lucide-react";
+import { AppCarousel } from "@/components/portfolio/AppCarousel";
 import caseFord from "@/assets/case-ford.jpg";
+import caseInmobiliaria from "@/assets/case-inmobiliaria.jpg";
+import caseAgencia from "@/assets/case-agencia.jpg";
+import heroDashboard from "@/assets/hero-dashboard.jpg";
+import rentalsHero from "@/assets/rentals-ai-hero.jpg";
 
 const cases = [
   {
@@ -10,6 +15,7 @@ const cases = [
     title: "De 25 a 80 Consultas Mensuales con Asistente IA",
     client: "Concesionario Ford Bahía Blanca",
     image: caseFord,
+    appImages: [caseFord, heroDashboard, rentalsHero],
     results: [
       { metric: "+220%", label: "Consultas mensuales" },
       { metric: "+150%", label: "Incremento ventas" },
@@ -30,7 +36,8 @@ const cases = [
     category: "Inmobiliaria",
     title: "170 Leads en 30 Días Sin Gastar en Publicidad",
     client: "Inmobiliaria Centro - Bahía Blanca",
-    image: caseFord,
+    image: caseInmobiliaria,
+    appImages: [rentalsHero, caseInmobiliaria, heroDashboard],
     results: [
       { metric: "170", label: "Leads capturados" },
       { metric: "25%", label: "Tasa de respuesta" },
@@ -51,7 +58,8 @@ const cases = [
     category: "Marketing Digital",
     title: "90% Reducción en Tiempo de Reportes para Agencia",
     client: "Agencia Digital Premium - México",
-    image: caseFord,
+    image: caseAgencia,
+    appImages: [caseAgencia, heroDashboard, caseFord],
     results: [
       { metric: "90%", label: "Menos tiempo" },
       { metric: "$800", label: "Ahorro USD/mes" },
@@ -128,13 +136,20 @@ const Portfolio = () => {
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-0">
-                    {/* Image */}
-                    <div className="relative h-64 md:h-auto">
-                      <img 
-                        src={caseStudy.image} 
-                        alt={caseStudy.title}
-                        className="w-full h-full object-cover"
-                      />
+                    {/* Carousel or Image */}
+                    <div className="relative h-64 md:h-auto p-4 bg-muted/30">
+                      {caseStudy.appImages ? (
+                        <AppCarousel 
+                          images={caseStudy.appImages}
+                          title={caseStudy.title}
+                        />
+                      ) : (
+                        <img 
+                          src={caseStudy.image} 
+                          alt={caseStudy.title}
+                          className="w-full h-full object-cover rounded-xl"
+                        />
+                      )}
                     </div>
 
                     {/* Content */}

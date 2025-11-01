@@ -3,6 +3,9 @@ import { HeroSection } from "@/components/home/HeroSection";
 import { StatsSection } from "@/components/home/StatsSection";
 import { ServicesPreview } from "@/components/home/ServicesPreview";
 import { PortfolioPreview } from "@/components/home/PortfolioPreview";
+import { AutomationSection } from "@/components/home/AutomationSection";
+import { WebPortfolioCarousel } from "@/components/home/WebPortfolioCarousel";
+import { TechStack } from "@/components/home/TechStack";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 const Index = () => {
@@ -24,11 +27,14 @@ const Index = () => {
       </Helmet>
 
       <div>
-        <HeroSection />
-        <StatsSection />
-        <ServicesPreview />
-        <PortfolioPreview />
-        <FinalCTA />
+      <HeroSection />
+      <StatsSection />
+      <ServicesPreview />
+      <AutomationSection />
+      <TechStack />
+      <WebPortfolioCarousel />
+      <PortfolioPreview />
+      <FinalCTA />
       </div>
     </>
   );

@@ -35,7 +35,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
         <nav className="container mx-auto flex h-16 items-center justify-between px-4">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <img src={logo} alt="IA MotorsHub" className="h-10 w-auto" />
+            <img src={logo} alt="IA MotorsHub" className="h-16 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -116,7 +116,9 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Column 1: About */}
             <div>
-              <h3 className="font-bold text-lg mb-4">IA MotorsHub</h3>
+              <Link to="/" className="inline-block mb-4">
+                <img src={logo} alt="IA MotorsHub" className="h-12 w-auto" />
+              </Link>
               <p className="text-sm text-secondary-foreground/80 mb-4">
                 Soluciones a Medida con Inteligencia Artificial para empresas de Latinoamérica.
               </p>
