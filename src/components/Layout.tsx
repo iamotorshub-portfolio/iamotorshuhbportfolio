@@ -38,7 +38,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
             <img 
               src={logo} 
               alt="IA MotorsHub" 
-              className="h-20 w-auto transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(0,123,255,0.6)]" 
+              className="h-40 w-auto transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(0,123,255,0.6)]" 
             />
           </Link>
 
@@ -124,7 +124,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                 <img 
                   src={logo} 
                   alt="IA MotorsHub" 
-                  className="h-16 w-auto transition-all duration-300 group-hover:scale-105" 
+                  className="h-32 w-auto transition-all duration-300 group-hover:scale-105" 
                 />
               </Link>
               <p className="text-sm text-secondary-foreground/80 mb-4">
