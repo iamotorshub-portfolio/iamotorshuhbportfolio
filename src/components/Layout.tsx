@@ -121,11 +121,11 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Column 1: About */}
             <div>
-              <Link to="/" className="flex justify-center mb-2 group">
+              <Link to="/" className="inline-block mb-4 group">
                 <img 
                   src={logoFooter} 
                   alt="IA MotorsHub" 
-                  className="h-72 w-auto transition-all duration-300 group-hover:scale-105" 
+                  className="h-24 w-auto object-contain transition-all duration-300 group-hover:scale-105" 
                 />
               </Link>
               <p className="text-sm text-secondary-foreground/80 mb-4">
