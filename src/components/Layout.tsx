@@ -38,7 +38,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
             <img 
               src={logo} 
               alt="IA MotorsHub" 
-              className="h-48 w-auto transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(0,123,255,0.6)]" 
+              className="h-72 w-auto transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(0,123,255,0.6)]" 
             />
           </Link>
 
@@ -121,11 +121,13 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
             {/* Column 1: About */}
             <div>
               <Link to="/" className="inline-block mb-4 group">
-                <img 
-                  src={logo} 
-                  alt="IA MotorsHub" 
-                  className="h-32 w-auto transition-all duration-300 group-hover:scale-105" 
-                />
+                <div className="bg-white rounded-full p-8 inline-flex items-center justify-center shadow-lg transition-all duration-300 group-hover:shadow-xl">
+                  <img 
+                    src={logo} 
+                    alt="IA MotorsHub" 
+                    className="h-64 w-auto transition-all duration-300 group-hover:scale-105" 
+                  />
+                </div>
               </Link>
               <p className="text-sm text-secondary-foreground/80 mb-4">
                 Soluciones a Medida con Inteligencia Artificial para empresas de Latinoamérica.
