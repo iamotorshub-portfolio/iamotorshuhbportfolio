@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import logo from "@/assets/logo-ia-motorshub.png";
+import logoFooter from "@/assets/logo-footer.png";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -34,7 +35,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container mx-auto flex h-16 items-center justify-between px-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center group -ml-12 my-2">
+          <Link to="/" className="flex items-center group -ml-16 mt-3">
             <img 
               src={logo} 
               alt="IA MotorsHub" 
@@ -120,14 +121,12 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Column 1: About */}
             <div>
-              <Link to="/" className="flex justify-center mb-4 group">
-                <div className="bg-white rounded-full p-3 inline-flex items-center justify-center shadow-lg transition-all duration-300 group-hover:shadow-xl">
-                  <img 
-                    src={logo} 
-                    alt="IA MotorsHub" 
-                    className="h-96 w-auto transition-all duration-300 group-hover:scale-105" 
-                  />
-                </div>
+              <Link to="/" className="flex justify-center mb-2 group">
+                <img 
+                  src={logoFooter} 
+                  alt="IA MotorsHub" 
+                  className="h-72 w-auto transition-all duration-300 group-hover:scale-105" 
+                />
               </Link>
               <p className="text-sm text-secondary-foreground/80 mb-4">
                 Soluciones a Medida con Inteligencia Artificial para empresas de Latinoamérica.
