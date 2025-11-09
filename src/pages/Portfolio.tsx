@@ -8,6 +8,30 @@ import caseInmobiliaria from "@/assets/case-inmobiliaria.jpg";
 import caseAgencia from "@/assets/case-agencia.jpg";
 import heroDashboard from "@/assets/hero-dashboard.jpg";
 import rentalsHero from "@/assets/rentals-ai-hero.jpg";
+import storyboard1 from "@/assets/portfolio/storyboard-1.jpg";
+import storyboard2 from "@/assets/portfolio/storyboard-2.jpg";
+import storyboard3 from "@/assets/portfolio/storyboard-3.jpg";
+import menuVivo1 from "@/assets/portfolio/menu-vivo-1.jpg";
+import menuVivo2 from "@/assets/portfolio/menu-vivo-2.jpg";
+import menuVivo3 from "@/assets/portfolio/menu-vivo-3.jpg";
+import agentHub1 from "@/assets/portfolio/agent-hub-1.jpg";
+import agentHub2 from "@/assets/portfolio/agent-hub-2.jpg";
+import agentHub3 from "@/assets/portfolio/agent-hub-3.jpg";
+import web1 from "@/assets/portfolio/web-1.jpg";
+import web2 from "@/assets/portfolio/web-2.jpg";
+import web3 from "@/assets/portfolio/web-3.jpg";
+import web4 from "@/assets/portfolio/web-4.jpg";
+import web5 from "@/assets/portfolio/web-5.jpg";
+import web6 from "@/assets/portfolio/web-6.jpg";
+import web7 from "@/assets/portfolio/web-7.jpg";
+import web8 from "@/assets/portfolio/web-8.jpg";
+import web9 from "@/assets/portfolio/web-9.jpg";
+import web10 from "@/assets/portfolio/web-10.jpg";
+import web11 from "@/assets/portfolio/web-11.jpg";
+import web12 from "@/assets/portfolio/web-12.jpg";
+import web13 from "@/assets/portfolio/web-13.jpg";
+import web14 from "@/assets/portfolio/web-14.jpg";
+import web15 from "@/assets/portfolio/web-15.jpg";
 
 const cases = [
   {
@@ -218,6 +242,90 @@ const Portfolio = () => {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Apps & Services Section */}
+        <section className="py-20 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-black mb-4">
+                Nuestras <span className="gradient-text">Aplicaciones IA</span>
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Soluciones completas diseñadas para transformar tu negocio
+              </p>
+            </div>
+
+            <div className="space-y-16">
+              {/* Storyboard Studio */}
+              <div className="bg-card border border-border rounded-2xl overflow-hidden">
+                <div className="p-8 border-b">
+                  <Badge className="mb-4">Producción de Video</Badge>
+                  <h3 className="text-3xl font-black mb-2">Storyboard Studio IA</h3>
+                  <p className="text-muted-foreground">
+                    Generación automática de storyboards profesionales con inteligencia artificial
+                  </p>
+                </div>
+                <div className="p-6">
+                  <AppCarousel 
+                    images={[storyboard1, storyboard2, storyboard3]}
+                    title="Storyboard Studio"
+                  />
+                </div>
+              </div>
+
+              {/* Menú en Vivo IA */}
+              <div className="bg-card border border-border rounded-2xl overflow-hidden">
+                <div className="p-8 border-b">
+                  <Badge className="mb-4">Gastronomía</Badge>
+                  <h3 className="text-3xl font-black mb-2">Menú en Vivo IA</h3>
+                  <p className="text-muted-foreground">
+                    Sistema inteligente de menús dinámicos con optimización de precios y stock en tiempo real
+                  </p>
+                </div>
+                <div className="p-6">
+                  <AppCarousel 
+                    images={[menuVivo1, menuVivo2, menuVivo3]}
+                    title="Menú en Vivo IA"
+                  />
+                </div>
+              </div>
+
+              {/* IA Agent HUB */}
+              <div className="bg-card border border-border rounded-2xl overflow-hidden">
+                <div className="p-8 border-b">
+                  <Badge className="mb-4">Plataforma IA</Badge>
+                  <h3 className="text-3xl font-black mb-2">IA Agent HUB</h3>
+                  <p className="text-muted-foreground">
+                    Laboratorio de creación de agentes IA personalizados y pre-configurados para todo tipo de negocios
+                  </p>
+                </div>
+                <div className="p-6">
+                  <AppCarousel 
+                    images={[agentHub1, agentHub2, agentHub3]}
+                    title="IA Agent HUB"
+                  />
+                </div>
+              </div>
+
+              {/* Web, Funnels y Landings */}
+              <div className="bg-card border border-border rounded-2xl overflow-hidden">
+                <div className="p-8 border-b">
+                  <Badge className="mb-4">Desarrollo Web</Badge>
+                  <h3 className="text-3xl font-black mb-2">Web, Funnels y Landings a Medida</h3>
+                  <p className="text-muted-foreground">
+                    Diseño y desarrollo de sitios web premium, funnels de conversión y landing pages de alto impacto
+                  </p>
+                </div>
+                <div className="p-6">
+                  <AppCarousel 
+                    images={[web1, web2, web3, web4, web5, web6, web7, web8, web9, web10, web11, web12, web13, web14, web15]}
+                    title="Web, Funnels y Landings"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </section>

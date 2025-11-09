@@ -35,6 +35,9 @@ import {
 } from "@/components/ui/select";
 
 const contactSchema = z.object({
+  contactType: z.enum(["call", "meeting"], {
+    required_error: "Por favor seleccioná una opción",
+  }),
   name: z.string()
     .trim()
     .min(2, { message: "El nombre debe tener al menos 2 caracteres" })
@@ -54,6 +57,8 @@ const contactSchema = z.object({
     .optional(),
   service: z.string()
     .min(1, { message: "Por favor seleccioná un servicio" }),
+  preferredTime: z.string()
+    .optional(),
   message: z.string()
     .trim()
     .max(1000, { message: "El mensaje no puede exceder 1000 caracteres" })
@@ -69,11 +74,13 @@ const Contacto = () => {
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
+      contactType: "meeting",
       name: "",
       email: "",
       phone: "",
       company: "",
       service: "",
+      preferredTime: "",
       message: "",
     },
   });
@@ -82,22 +89,31 @@ const Contacto = () => {
     setLoading(true);
 
     try {
+      const contactTypeText = data.contactType === "call" 
+        ? "Solicita que lo llamen" 
+        : "Solicita agendar videollamada de 20 min";
+
       // Encode data for WhatsApp
       const message = encodeURIComponent(
         `*Nueva Consulta - IA MotorsHub*\n\n` +
+        `*Tipo de Contacto:* ${contactTypeText}\n` +
         `*Nombre:* ${data.name}\n` +
         `*Email:* ${data.email}\n` +
         `*Teléfono:* ${data.phone}\n` +
         `*Empresa:* ${data.company || "No especificada"}\n` +
         `*Servicio:* ${data.service}\n` +
+        `*Horario Preferido:* ${data.preferredTime || "No especificado"}\n` +
         `*Mensaje:* ${data.message || "Sin mensaje adicional"}`
       );
 
-      // Simulate form submission
+      // TODO: Integrate with email sending service
+      // For now, simulate form submission
       setTimeout(() => {
         toast({
-          title: "¡Mensaje enviado!",
-          description: "Te contactaremos en las próximas 24 horas.",
+          title: "¡Solicitud enviada!",
+          description: data.contactType === "call" 
+            ? "Te contactaremos en las próximas 24 horas." 
+            : "Revisá tu email para confirmar tu videollamada.",
         });
         setLoading(false);
         form.reset();
@@ -130,13 +146,13 @@ const Contacto = () => {
               Contacto
             </Badge>
             <h1 className="text-5xl md:text-6xl font-black mb-6">
-              Agendar Consulta{" "}
+              Hablemos de tu{" "}
               <span className="bg-gradient-to-r from-primary to-info bg-clip-text text-transparent">
-                Gratuita
+                Proyecto
               </span>
             </h1>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              En 30 minutos descubriremos si la IA puede 10x tu negocio
+              Elegí cómo querés que te contactemos y descubrí cómo la IA puede transformar tu negocio
             </p>
           </div>
         </section>
@@ -147,9 +163,63 @@ const Contacto = () => {
             <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
               {/* Form */}
               <div>
-                <h2 className="text-3xl font-black mb-6">Dejanos tus Datos</h2>
+                <h2 className="text-3xl font-black mb-6">Elegí tu Modalidad de Contacto</h2>
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                    {/* Contact Type Selection */}
+                    <FormField
+                      control={form.control}
+                      name="contactType"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-lg font-bold">¿Cómo preferís que te contactemos?</FormLabel>
+                          <FormControl>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <button
+                                type="button"
+                                onClick={() => field.onChange("call")}
+                                className={`p-6 border-2 rounded-xl text-left transition-all hover:border-primary ${
+                                  field.value === "call" 
+                                    ? "border-primary bg-primary/10" 
+                                    : "border-border"
+                                }`}
+                              >
+                                <div className="flex items-start gap-4">
+                                  <Phone className="h-8 w-8 text-primary flex-shrink-0" />
+                                  <div>
+                                    <h3 className="font-bold text-lg mb-2">Quiero que me llamen</h3>
+                                    <p className="text-sm text-muted-foreground">
+                                      Te contactaremos por teléfono en las próximas 24 horas
+                                    </p>
+                                  </div>
+                                </div>
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => field.onChange("meeting")}
+                                className={`p-6 border-2 rounded-xl text-left transition-all hover:border-primary ${
+                                  field.value === "meeting" 
+                                    ? "border-primary bg-primary/10" 
+                                    : "border-border"
+                                }`}
+                              >
+                                <div className="flex items-start gap-4">
+                                  <MessageCircle className="h-8 w-8 text-primary flex-shrink-0" />
+                                  <div>
+                                    <h3 className="font-bold text-lg mb-2">Agendar Videollamada Gratuita</h3>
+                                    <p className="text-sm text-muted-foreground">
+                                      Videollamada de 20 minutos para despejar dudas
+                                    </p>
+                                  </div>
+                                </div>
+                              </button>
+                            </div>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
                     <FormField
                       control={form.control}
                       name="name"
@@ -219,6 +289,7 @@ const Contacto = () => {
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
+                              <SelectItem value="agent-hub">IA Agent HUB</SelectItem>
                               <SelectItem value="asistentes">Asistentes IA</SelectItem>
                               <SelectItem value="storyboard">Storyboard Studio</SelectItem>
                               <SelectItem value="menu-vivo">Menú Vivo IA</SelectItem>
@@ -232,6 +303,31 @@ const Contacto = () => {
                         </FormItem>
                       )}
                     />
+
+                    {form.watch("contactType") === "call" && (
+                      <FormField
+                        control={form.control}
+                        name="preferredTime"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Horario Preferido</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                              <FormControl>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Seleccioná un horario" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                <SelectItem value="morning">Mañana (9-12hs)</SelectItem>
+                                <SelectItem value="afternoon">Tarde (14-18hs)</SelectItem>
+                                <SelectItem value="evening">Noche (18-20hs)</SelectItem>
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    )}
 
                     <FormField
                       control={form.control}
@@ -254,10 +350,16 @@ const Contacto = () => {
                     <Button 
                       type="submit" 
                       size="lg" 
-                      className="w-full"
+                      className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90"
                       disabled={loading}
                     >
-                      {loading ? "Enviando..." : "Enviar Solicitud"}
+                      {loading ? (
+                        "Enviando..."
+                      ) : form.watch("contactType") === "call" ? (
+                        "Solicitar Llamada"
+                      ) : (
+                        "Agendar Videollamada"
+                      )}
                     </Button>
                   </form>
                 </Form>
