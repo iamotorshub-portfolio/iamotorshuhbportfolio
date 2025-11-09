@@ -51,8 +51,8 @@ export const FinalCTA = () => {
             </Button>
             <Button 
               size="lg" 
-              variant="outline"
-              className="border-white text-white hover:bg-white/10 font-bold text-lg px-8"
+              variant="secondary"
+              className="bg-white/90 text-primary hover:bg-white font-bold text-lg px-8 border-2 border-white shadow-lg"
               asChild
             >
               <a href="https://wa.me/5492915206692" target="_blank" rel="noopener noreferrer">

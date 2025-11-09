@@ -15,6 +15,9 @@ import {
 import asistentesImg from "@/assets/service-asistentes.jpg";
 import storyboardImg from "@/assets/service-storyboard.jpg";
 import menuImg from "@/assets/service-menu.jpg";
+import probadorVirtualImg from "@/assets/service-probador-virtual.jpg";
+import rentalsAiImg from "@/assets/service-rentals-ai.jpg";
+import funnelsWebImg from "@/assets/service-funnels-web.jpg";
 
 const mainServices = [
   {
@@ -63,19 +66,22 @@ const additionalServices = [
     icon: Shirt,
     title: "Probador Virtual IA",
     description: "Try-on virtual para ecommerce de moda",
-    link: "/servicios/probador-virtual"
+    link: "/servicios/probador-virtual",
+    image: probadorVirtualImg
   },
   {
     icon: Home,
     title: "Rentals AI",
     description: "Sistema completo gestión inmobiliaria",
-    link: "/servicios/rentals-ai"
+    link: "/servicios/rentals-ai",
+    image: rentalsAiImg
   },
   {
     icon: Layout,
     title: "Funnels y Webs",
     description: "Desarrollo web + funnels de conversión",
-    link: "/servicios/funnels-y-web"
+    link: "/servicios/funnels-y-web",
+    image: funnelsWebImg
   }
 ];
 
@@ -167,19 +173,32 @@ export const ServicesPreview = () => {
               to={service.link}
               className="group"
             >
-              <div className="p-6 bg-card border border-border rounded-xl hover-lift">
-                <div className="inline-flex p-3 rounded-lg mb-4 bg-muted group-hover:bg-primary/10 transition-colors">
-                  <service.icon className="h-6 w-6 group-hover:text-primary transition-colors" />
+              <div className="h-full bg-card border border-border rounded-xl overflow-hidden hover-lift">
+                {/* Image */}
+                <div className="relative h-40 overflow-hidden">
+                  <img 
+                    src={service.image} 
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 </div>
-                <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-3">
-                  {service.description}
-                </p>
-                <div className="flex items-center text-primary font-medium text-sm">
-                  Más información
-                  <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                
+                {/* Content */}
+                <div className="p-6">
+                  <div className="inline-flex p-3 rounded-lg mb-4 bg-muted group-hover:bg-primary/10 transition-colors">
+                    <service.icon className="h-6 w-6 group-hover:text-primary transition-colors" />
+                  </div>
+                  <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    {service.description}
+                  </p>
+                  <div className="flex items-center text-primary font-medium text-sm">
+                    Más información
+                    <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </div>
               </div>
             </Link>

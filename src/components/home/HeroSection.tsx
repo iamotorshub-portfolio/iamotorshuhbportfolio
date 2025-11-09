@@ -61,8 +61,8 @@ export const HeroSection = () => {
               </Button>
               <Button 
                 size="lg" 
-                variant="outline" 
-                className="border-white/20 text-white hover:bg-white/10 hover:border-white/40 hover:scale-105 transition-all duration-300"
+                variant="secondary"
+                className="bg-white/90 text-secondary hover:bg-white hover:scale-105 transition-all duration-300 border-2 border-white shadow-lg"
                 asChild
               >
                 <a href="#portfolio">

@@ -162,7 +162,7 @@ export const PortfolioPreview = () => {
 
         {/* CTA */}
         <div className="text-center">
-          <Button size="lg" variant="outline" asChild>
+          <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90" asChild>
             <Link to="/portfolio">
               Ver Todos los Casos
               <ArrowRight className="ml-2 h-4 w-4" />
