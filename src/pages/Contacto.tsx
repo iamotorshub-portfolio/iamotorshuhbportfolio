@@ -15,24 +15,101 @@ import {
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+const contactSchema = z.object({
+  name: z.string()
+    .trim()
+    .min(2, { message: "El nombre debe tener al menos 2 caracteres" })
+    .max(100, { message: "El nombre no puede exceder 100 caracteres" }),
+  email: z.string()
+    .trim()
+    .email({ message: "Email inválido" })
+    .max(255, { message: "El email no puede exceder 255 caracteres" }),
+  phone: z.string()
+    .trim()
+    .min(8, { message: "El teléfono debe tener al menos 8 dígitos" })
+    .max(20, { message: "El teléfono no puede exceder 20 caracteres" })
+    .regex(/^[+]?[0-9\s()-]+$/, { message: "Formato de teléfono inválido" }),
+  company: z.string()
+    .trim()
+    .max(100, { message: "El nombre de la empresa no puede exceder 100 caracteres" })
+    .optional(),
+  service: z.string()
+    .min(1, { message: "Por favor seleccioná un servicio" }),
+  message: z.string()
+    .trim()
+    .max(1000, { message: "El mensaje no puede exceder 1000 caracteres" })
+    .optional(),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
 
 const Contacto = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const form = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      company: "",
+      service: "",
+      message: "",
+    },
+  });
+
+  const onSubmit = async (data: ContactFormData) => {
     setLoading(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Encode data for WhatsApp
+      const message = encodeURIComponent(
+        `*Nueva Consulta - IA MotorsHub*\n\n` +
+        `*Nombre:* ${data.name}\n` +
+        `*Email:* ${data.email}\n` +
+        `*Teléfono:* ${data.phone}\n` +
+        `*Empresa:* ${data.company || "No especificada"}\n` +
+        `*Servicio:* ${data.service}\n` +
+        `*Mensaje:* ${data.message || "Sin mensaje adicional"}`
+      );
+
+      // Simulate form submission
+      setTimeout(() => {
+        toast({
+          title: "¡Mensaje enviado!",
+          description: "Te contactaremos en las próximas 24 horas.",
+        });
+        setLoading(false);
+        form.reset();
+      }, 1000);
+    } catch (error) {
       toast({
-        title: "¡Mensaje enviado!",
-        description: "Te contactaremos en las próximas 24 horas.",
+        title: "Error",
+        description: "Hubo un problema al enviar el mensaje. Por favor, intentá nuevamente.",
+        variant: "destructive",
       });
       setLoading(false);
-      (e.target as HTMLFormElement).reset();
-    }, 1000);
+    }
   };
 
   return (
@@ -71,53 +148,119 @@ const Contacto = () => {
               {/* Form */}
               <div>
                 <h2 className="text-3xl font-black mb-6">Dejanos tus Datos</h2>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <Label htmlFor="name">Nombre Completo *</Label>
-                    <Input id="name" required />
-                  </div>
-                  <div>
-                    <Label htmlFor="email">Email *</Label>
-                    <Input id="email" type="email" required />
-                  </div>
-                  <div>
-                    <Label htmlFor="phone">Teléfono (WhatsApp) *</Label>
-                    <Input id="phone" type="tel" required />
-                  </div>
-                  <div>
-                    <Label htmlFor="company">Empresa</Label>
-                    <Input id="company" />
-                  </div>
-                  <div>
-                    <Label htmlFor="service">Servicio de Interés *</Label>
-                    <select 
-                      id="service"
-                      required
-                      className="w-full px-3 py-2 border border-input rounded-md bg-background"
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                    <FormField
+                      control={form.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Nombre Completo *</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Juan Pérez" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Email *</FormLabel>
+                          <FormControl>
+                            <Input type="email" placeholder="juan@empresa.com" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="phone"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Teléfono (WhatsApp) *</FormLabel>
+                          <FormControl>
+                            <Input type="tel" placeholder="+54 9 291 123-4567" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="company"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Empresa</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Nombre de tu empresa" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="service"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Servicio de Interés *</FormLabel>
+                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Seleccioná una opción" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value="asistentes">Asistentes IA</SelectItem>
+                              <SelectItem value="storyboard">Storyboard Studio</SelectItem>
+                              <SelectItem value="menu-vivo">Menú Vivo IA</SelectItem>
+                              <SelectItem value="probador">Probador Virtual</SelectItem>
+                              <SelectItem value="rentals">Rentals AI</SelectItem>
+                              <SelectItem value="funnels">Funnels y Webs</SelectItem>
+                              <SelectItem value="consulta">Consultoría General</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="message"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>¿Qué desafío querés resolver?</FormLabel>
+                          <FormControl>
+                            <Textarea 
+                              placeholder="Contanos brevemente sobre tu proyecto o desafío..."
+                              rows={4}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <Button 
+                      type="submit" 
+                      size="lg" 
+                      className="w-full"
+                      disabled={loading}
                     >
-                      <option value="">Seleccioná una opción</option>
-                      <option value="asistentes">Asistentes IA</option>
-                      <option value="storyboard">Storyboard Studio</option>
-                      <option value="menu-vivo">Menú Vivo IA</option>
-                      <option value="probador">Probador Virtual</option>
-                      <option value="rentals">Rentals AI</option>
-                      <option value="funnels">Funnels y Webs</option>
-                      <option value="consulta">Consultoría General</option>
-                    </select>
-                  </div>
-                  <div>
-                    <Label htmlFor="message">¿Qué desafío querés resolver?</Label>
-                    <Textarea id="message" rows={4} />
-                  </div>
-                  <Button 
-                    type="submit" 
-                    size="lg" 
-                    className="w-full"
-                    disabled={loading}
-                  >
-                    {loading ? "Enviando..." : "Enviar Solicitud"}
-                  </Button>
-                </form>
+                      {loading ? "Enviando..." : "Enviar Solicitud"}
+                    </Button>
+                  </form>
+                </Form>
               </div>
 
               {/* Calendly & Info */}
