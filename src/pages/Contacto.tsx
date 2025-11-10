@@ -89,36 +89,33 @@ const Contacto = () => {
     setLoading(true);
 
     try {
-      const contactTypeText = data.contactType === "call" 
-        ? "Solicita que lo llamen" 
-        : "Solicita agendar videollamada de 20 min";
-
-      // Encode data for WhatsApp
-      const message = encodeURIComponent(
-        `*Nueva Consulta - IA MotorsHub*\n\n` +
-        `*Tipo de Contacto:* ${contactTypeText}\n` +
-        `*Nombre:* ${data.name}\n` +
-        `*Email:* ${data.email}\n` +
-        `*Teléfono:* ${data.phone}\n` +
-        `*Empresa:* ${data.company || "No especificada"}\n` +
-        `*Servicio:* ${data.service}\n` +
-        `*Horario Preferido:* ${data.preferredTime || "No especificado"}\n` +
-        `*Mensaje:* ${data.message || "Sin mensaje adicional"}`
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-contact-email`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          },
+          body: JSON.stringify(data),
+        }
       );
 
-      // TODO: Integrate with email sending service
-      // For now, simulate form submission
-      setTimeout(() => {
-        toast({
-          title: "¡Solicitud enviada!",
-          description: data.contactType === "call" 
-            ? "Te contactaremos en las próximas 24 horas." 
-            : "Revisá tu email para confirmar tu videollamada.",
-        });
-        setLoading(false);
-        form.reset();
-      }, 1000);
+      if (!response.ok) {
+        throw new Error("Error al enviar el email");
+      }
+
+      toast({
+        title: "¡Solicitud enviada!",
+        description: data.contactType === "call" 
+          ? "Te contactaremos en las próximas 24 horas. Revisá tu email para más detalles." 
+          : "Revisá tu email para confirmar tu videollamada de 20 minutos.",
+      });
+      
+      form.reset();
+      setLoading(false);
     } catch (error) {
+      console.error("Error submitting form:", error);
       toast({
         title: "Error",
         description: "Hubo un problema al enviar el mensaje. Por favor, intentá nuevamente.",
