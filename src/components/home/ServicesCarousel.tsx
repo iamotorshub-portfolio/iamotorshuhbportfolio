@@ -256,7 +256,7 @@ export const ServicesCarousel = () => {
                       className="border-white/20 text-white hover:bg-white/10"
                       asChild
                     >
-                      <a href="https://calendly.com/franco-iamotorshub/30min" target="_blank" rel="noopener noreferrer">
+                      <a href="https://calendly.com/contacto-iamotorshub/30min" target="_blank" rel="noopener noreferrer">
                         <Clock className="mr-2 h-5 w-5" />
                         Agendar Demo
                       </a>

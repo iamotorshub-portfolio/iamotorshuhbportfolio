@@ -54,7 +54,7 @@ export const HeroSection = () => {
                 className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white shadow-lg shadow-primary/50 hover:shadow-primary/70 hover:scale-105 transition-all duration-300"
                 asChild
               >
-                <a href="https://calendly.com/franco-iamotorshub/30min" target="_blank" rel="noopener noreferrer">
+                <a href="https://calendly.com/contacto-iamotorshub/30min" target="_blank" rel="noopener noreferrer">
                   <Calendar className="mr-2 h-5 w-5" />
                   Agendar Consulta Gratuita
                 </a>

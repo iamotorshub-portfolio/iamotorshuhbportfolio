@@ -33,7 +33,7 @@ const SobreFranco = () => {
                     </p>
                   </div>
                   <Button size="lg" className="bg-white text-primary hover:bg-white/90" asChild>
-                    <a href="https://calendly.com/franco-iamotorshub/30min" target="_blank" rel="noopener noreferrer">
+                    <a href="https://calendly.com/contacto-iamotorshub/30min" target="_blank" rel="noopener noreferrer">
                       <Calendar className="mr-2 h-5 w-5" />
                       Agendar Consulta con Franco
                     </a>
@@ -184,7 +184,7 @@ const SobreFranco = () => {
               Te cuento exactamente qué se puede hacer en tu caso específico.
             </p>
             <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-bold" asChild>
-              <a href="https://calendly.com/franco-iamotorshub/30min" target="_blank" rel="noopener noreferrer">
+              <a href="https://calendly.com/contacto-iamotorshub/30min" target="_blank" rel="noopener noreferrer">
                 <Calendar className="mr-2 h-5 w-5" />
                 Agendar Consulta con Franco
               </a>

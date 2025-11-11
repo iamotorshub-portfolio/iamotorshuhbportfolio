@@ -60,7 +60,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
             ))}
             <Button asChild>
               <a 
-                href="https://calendly.com/franco-iamotorshub/30min" 
+                href="https://calendly.com/contacto-iamotorshub/30min" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >
@@ -99,7 +99,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
               ))}
               <Button asChild className="w-full">
                 <a 
-                  href="https://calendly.com/franco-iamotorshub/30min" 
+                  href="https://calendly.com/contacto-iamotorshub/30min" 
                   target="_blank" 
                   rel="noopener noreferrer"
                 >

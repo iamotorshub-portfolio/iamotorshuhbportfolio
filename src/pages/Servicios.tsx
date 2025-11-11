@@ -96,7 +96,7 @@ const Servicios = () => {
                   className="bg-gradient-to-r from-primary to-info hover:opacity-90 text-white shadow-lg shadow-primary/50"
                   asChild
                 >
-                  <a href="https://calendly.com/franco-iamotorshub/30min" target="_blank" rel="noopener noreferrer">
+                  <a href="https://calendly.com/contacto-iamotorshub/30min" target="_blank" rel="noopener noreferrer">
                     <Calendar className="mr-2 h-5 w-5" />
                     Agendar Consulta Gratuita
                   </a>

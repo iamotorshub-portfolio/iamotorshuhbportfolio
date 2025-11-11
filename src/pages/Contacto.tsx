@@ -372,7 +372,7 @@ const Contacto = () => {
                     </p>
                     <Button size="lg" className="w-full mb-4" asChild>
                       <a 
-                        href="https://calendly.com/franco-iamotorshub/30min" 
+                        href="https://calendly.com/contacto-iamotorshub/30min" 
                         target="_blank" 
                         rel="noopener noreferrer"
                       >
