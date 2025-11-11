@@ -26,7 +26,12 @@ const SobreFranco = () => {
                     De Director Creativo Global a{" "}
                     <ShimmerText text="Pionero en IA" className="text-5xl md:text-6xl font-black" />
                   </h1>
-                  <p className="text-xl text-white/80 mb-8 text-justify">Transformo ideas imposibles en resultados inevitables.</p>
+                  <div className="mb-8 relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-info/20 to-primary/20 blur-3xl" />
+                    <p className="relative text-2xl md:text-3xl font-black text-center bg-gradient-to-r from-white via-primary-light to-white bg-clip-text text-transparent leading-tight py-4 px-6 border-l-4 border-primary">
+                      Transformo ideas <span className="text-info">imposibles</span> en resultados <span className="text-success">inevitables</span>.
+                    </p>
+                  </div>
                   <Button size="lg" className="bg-white text-primary hover:bg-white/90" asChild>
                     <a href="https://calendly.com/franco-iamotorshub/30min" target="_blank" rel="noopener noreferrer">
                       <Calendar className="mr-2 h-5 w-5" />

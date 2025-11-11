@@ -8,7 +8,6 @@ import { WebPortfolioCarousel } from "@/components/home/WebPortfolioCarousel";
 import { TechStack } from "@/components/home/TechStack";
 import { MarketingBanner } from "@/components/home/MarketingBanner";
 import { FinalCTA } from "@/components/home/FinalCTA";
-import { InteractiveMap } from "@/components/home/InteractiveMap";
 
 const Index = () => {
   return (
@@ -37,19 +36,6 @@ const Index = () => {
       <TechStack />
       <WebPortfolioCarousel />
       <PortfolioPreview />
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-black mb-4">
-              Experiencias <span className="gradient-text">Interactivas</span>
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Mapas 3D y visualizaciones inmersivas para tu negocio
-            </p>
-          </div>
-          <InteractiveMap />
-        </div>
-      </section>
       <FinalCTA />
       </div>
     </>

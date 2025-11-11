@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Quote, ArrowRight } from "lucide-react";
 import { AppCarousel } from "@/components/portfolio/AppCarousel";
+import { WebProjectsCarousel } from "@/components/portfolio/WebProjectsCarousel";
 import caseFord from "@/assets/case-ford.jpg";
 import caseInmobiliaria from "@/assets/case-inmobiliaria.jpg";
 import caseAgencia from "@/assets/case-agencia.jpg";
@@ -316,14 +317,11 @@ const Portfolio = () => {
                   <Badge className="mb-4">Desarrollo Web</Badge>
                   <h3 className="text-3xl font-black mb-2">Web, Funnels y Landings a Medida</h3>
                   <p className="text-muted-foreground">
-                    Diseño y desarrollo de sitios web premium, funnels de conversión y landing pages de alto impacto
+                    Diseño y desarrollo de sitios web premium, funnels de conversión y landing pages de alto impacto. Cada proyecto incluye diseño personalizado, optimización SEO y stack tecnológico a medida.
                   </p>
                 </div>
-                <div className="p-6">
-                  <AppCarousel 
-                    images={[web1, web2, web3, web4, web5, web6, web7, web8, web9, web10, web11, web12, web13, web14, web15]}
-                    title="Web, Funnels y Landings"
-                  />
+                <div className="p-8">
+                  <WebProjectsCarousel />
                 </div>
               </div>
             </div>
