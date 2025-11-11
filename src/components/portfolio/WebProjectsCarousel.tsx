@@ -172,35 +172,36 @@ export const WebProjectsCarousel = () => {
       <CarouselContent>
         {webProjects.map((project, index) => (
           <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-            <div className="group relative h-[500px] overflow-hidden rounded-2xl border border-border bg-card transition-all duration-500 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/20">
-              {/* Background Image with Overlay */}
-              <div className="absolute inset-0">
+            <div className="group relative h-[600px] overflow-hidden rounded-2xl border border-border bg-card transition-all duration-500 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/20 animate-fade-in">
+              {/* Clear Image Section - Top 60% */}
+              <div className="absolute inset-x-0 top-0 h-[60%] overflow-hidden">
                 <img 
                   src={project.image} 
                   alt={project.title}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
+                {/* Subtle gradient only at bottom edge to blend with info card */}
+                <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background to-transparent" />
               </div>
 
-              {/* Content */}
-              <div className="relative flex h-full flex-col justify-between p-6">
-                {/* Top Section */}
-                <div>
-                  <Badge className="mb-3 bg-primary/20 text-primary border-primary/30 backdrop-blur-sm">
+              {/* Info Card - Bottom 40% */}
+              <div className="absolute inset-x-0 bottom-0 h-[40%] bg-background/95 backdrop-blur-xl border-t border-border/50 p-6 flex flex-col justify-between transform transition-all duration-500">
+                {/* Top Section - Badge & Title */}
+                <div className="space-y-3">
+                  <Badge className="bg-primary/20 text-primary border-primary/30 animate-scale-in">
                     {project.client}
                   </Badge>
-                  <h3 className="text-2xl font-black mb-3 text-foreground group-hover:text-primary transition-colors">
+                  <h3 className="text-xl font-black text-foreground group-hover:text-primary transition-colors duration-300 animate-fade-in [animation-delay:100ms]">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 animate-fade-in [animation-delay:200ms]">
                     {project.description}
                   </p>
                 </div>
 
-                {/* Tech Stack - Bottom Section */}
-                <div className="space-y-3">
-                  <div className="h-px bg-border/50" />
+                {/* Tech Stack - Bottom */}
+                <div className="space-y-2 animate-fade-in [animation-delay:300ms]">
+                  <div className="h-px bg-border/30" />
                   <div>
                     <p className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wider">
                       Stack Tecnológico
@@ -209,9 +210,10 @@ export const WebProjectsCarousel = () => {
                       {project.techs.map((tech, i) => (
                         <div
                           key={i}
-                          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-muted/80 backdrop-blur-sm border border-border/50 transition-all duration-300 hover:bg-primary/10 hover:border-primary/50"
+                          className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-muted/80 backdrop-blur-sm border border-border/50 transition-all duration-300 hover:bg-primary/10 hover:border-primary/50 hover:scale-105"
+                          style={{ animationDelay: `${400 + i * 50}ms` }}
                         >
-                          <span className="text-base">{techLogos[tech] || "⚙️"}</span>
+                          <span className="text-sm">{techLogos[tech] || "⚙️"}</span>
                           <span className="text-xs font-medium text-foreground">
                             {tech}
                           </span>
