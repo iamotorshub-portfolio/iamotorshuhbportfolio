@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -69,6 +70,7 @@ type ContactFormData = z.infer<typeof contactSchema>;
 
 const Contacto = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   const form = useForm<ContactFormData>({
@@ -105,15 +107,8 @@ const Contacto = () => {
         throw new Error("Error al enviar el email");
       }
 
-      toast({
-        title: "¡Solicitud enviada!",
-        description: data.contactType === "call" 
-          ? "Te contactaremos en las próximas 24 horas. Revisá tu email para más detalles." 
-          : "Revisá tu email para confirmar tu videollamada de 20 minutos.",
-      });
-      
-      form.reset();
-      setLoading(false);
+      // Redirect to thank you page
+      navigate("/gracias");
     } catch (error) {
       console.error("Error submitting form:", error);
       toast({

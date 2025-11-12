@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { WhatsAppWidget } from "@/components/WhatsAppWidget";
 import { 
   Calendar, 
   Menu, 
@@ -9,7 +10,7 @@ import {
   Mail,
   MapPin,
   Phone,
-  MessageCircle
+  Globe
 } from "lucide-react";
 import { useState } from "react";
 import logo from "@/assets/logo-ia-motorshub.png";
@@ -113,7 +114,12 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1">{children}</main>
+      <main className="flex-1">
+        {children}
+      </main>
+
+      {/* WhatsApp Widget */}
+      <WhatsAppWidget />
 
       {/* Footer */}
       <footer className="border-t bg-secondary text-secondary-foreground">
@@ -188,6 +194,12 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                   <MapPin className="h-4 w-4" />
                   <span>Bahía Blanca, Argentina</span>
                 </li>
+                <li className="flex items-center space-x-2">
+                  <Globe className="h-4 w-4" />
+                  <a href="https://www.iamotorshub.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                    www.iamotorshub.com
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
@@ -197,17 +209,6 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
       </footer>
-
-      {/* WhatsApp Float Button */}
-      <a
-        href="https://wa.me/5492915206692?text=Hola%20Franco,%20quiero%20consultar%20sobre%20IA"
-        className="whatsapp-float"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Contactar por WhatsApp"
-      >
-        <MessageCircle className="h-6 w-6" />
-      </a>
     </div>
   );
 };

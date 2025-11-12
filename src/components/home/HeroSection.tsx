@@ -13,9 +13,9 @@ import web2 from "@/assets/portfolio/web-2.jpg";
 import web3 from "@/assets/portfolio/web-3.jpg";
 import web4 from "@/assets/portfolio/web-4.jpg";
 import web5 from "@/assets/portfolio/web-5.jpg";
-import web6 from "@/assets/portfolio/web-6.jpg";
+import web11 from "@/assets/portfolio/web-11.jpg";
 
-const portfolioImages = [web1, web2, web3, web4, web5, web6];
+const portfolioImages = [web1, web2, web3, web4, web5, web11];
 
 export const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -57,8 +57,8 @@ export const HeroSection = () => {
         </div>
 
         {/* Portfolio Carousel Banner */}
-        <div className="mb-8 animate-fade-in" style={{ animationDelay: '400ms' }}>
-          <Carousel className="w-full max-w-6xl mx-auto">
+        <div className="mb-8 animate-fade-in -mx-4 md:mx-0" style={{ animationDelay: '400ms' }}>
+          <Carousel className="w-full">
             <CarouselContent>
               {portfolioImages.map((image, index) => (
                 <CarouselItem key={index}>

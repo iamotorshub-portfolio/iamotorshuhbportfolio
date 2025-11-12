@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight, Globe, Zap, Palette } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -35,6 +35,21 @@ const portfolioItems = [
 
 export const WebPortfolioCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / window.innerHeight));
+        setScrollY(scrollProgress * 50);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev - 1 + portfolioItems.length) % portfolioItems.length);
@@ -47,7 +62,7 @@ export const WebPortfolioCarousel = () => {
   const currentItem = portfolioItems[currentIndex];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-background to-muted/30">
+    <section ref={sectionRef} className="py-20 bg-gradient-to-b from-background to-muted/30">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
@@ -74,6 +89,7 @@ export const WebPortfolioCarousel = () => {
                   src={currentItem.image}
                   alt={currentItem.title}
                   className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
+                  style={{ transform: `translateY(${scrollY * 0.3}px)` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 

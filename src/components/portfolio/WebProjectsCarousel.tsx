@@ -1,3 +1,4 @@
+import { useEffect, useState, useRef } from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Badge } from "@/components/ui/badge";
 import web1 from "@/assets/portfolio/web-1.jpg";
@@ -161,8 +162,25 @@ const techLogos: Record<string, string> = {
 };
 
 export const WebProjectsCarousel = () => {
+  const [scrollY, setScrollY] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (carouselRef.current) {
+        const rect = carouselRef.current.getBoundingClientRect();
+        const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / window.innerHeight));
+        setScrollY(scrollProgress * 30);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <Carousel
+    <div ref={carouselRef}>
+      <Carousel
       opts={{
         align: "start",
         loop: true,
@@ -179,6 +197,7 @@ export const WebProjectsCarousel = () => {
                   src={project.image} 
                   alt={project.title}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  style={{ transform: `translateY(${scrollY * 0.2}px)` }}
                 />
                 {/* Subtle gradient only at bottom edge to blend with info card */}
                 <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background to-transparent" />
@@ -235,5 +254,6 @@ export const WebProjectsCarousel = () => {
       <CarouselPrevious className="left-4" />
       <CarouselNext className="right-4" />
     </Carousel>
+    </div>
   );
 };

@@ -37,8 +37,8 @@ export const FinalCTA = () => {
             ))}
           </div>
           
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          {/* CTA Button */}
+          <div className="flex justify-center">
             <Button 
               size="lg" 
               className="bg-white text-primary hover:bg-white/90 font-bold shadow-2xl shadow-black/20 text-lg px-8"
@@ -47,17 +47,6 @@ export const FinalCTA = () => {
               <a href="https://calendly.com/contacto-iamotorshub/30min" target="_blank" rel="noopener noreferrer">
                 <Calendar className="mr-2 h-5 w-5" />
                 Agendar Consulta Gratuita
-              </a>
-            </Button>
-            <Button 
-              size="lg" 
-              variant="secondary"
-              className="bg-white/90 text-primary hover:bg-white font-bold text-lg px-8 border-2 border-white shadow-lg"
-              asChild
-            >
-              <a href="https://wa.me/5492915206692" target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="mr-2 h-5 w-5" />
-                WhatsApp
               </a>
             </Button>
           </div>
