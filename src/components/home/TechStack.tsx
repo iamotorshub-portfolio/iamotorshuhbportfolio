@@ -79,25 +79,57 @@ export const TechStack = () => {
           {techCategories.map((category, i) => (
             <div 
               key={i}
-              className="bg-card border border-border rounded-xl p-6 hover-lift"
+              className="bg-card border border-border rounded-xl p-6 hover-lift animate-fade-in"
+              style={{ animationDelay: `${i * 100}ms` }}
             >
               <div className={`flex items-center gap-3 mb-6 ${category.color}`}>
-                <div className="p-2 bg-muted rounded-lg">
+                <div className="p-3 bg-gradient-to-br from-primary/10 to-info/10 rounded-xl shadow-lg">
                   {category.icon}
                 </div>
                 <h3 className="font-bold text-lg">{category.title}</h3>
               </div>
               
               <div className="flex flex-wrap gap-2">
-                {category.technologies.map((tech, j) => (
-                  <Badge 
-                    key={j} 
-                    variant="secondary" 
-                    className="text-xs hover:bg-muted-foreground/20 transition-colors"
-                  >
-                    {tech}
-                  </Badge>
-                ))}
+                {category.technologies.map((tech, j) => {
+                  // Determine emoji/logo for each tech
+                  const techLogos: Record<string, string> = {
+                    "OpenAI GPT-4": "🤖",
+                    "Anthropic Claude": "🧠",
+                    "Google Gemini": "✨",
+                    "ElevenLabs Voice AI": "🎙️",
+                    "Midjourney": "🎨",
+                    "Stable Diffusion": "🖼️",
+                    "Make.com (Expertos Certificados)": "⚡",
+                    "Zapier": "⚙️",
+                    "n8n": "🔗",
+                    "Airtable": "📊",
+                    "WhatsApp Business API": "💬",
+                    "Twilio": "📱",
+                    "React / Next.js": "⚛️",
+                    "TypeScript": "📘",
+                    "Python / FastAPI": "🐍",
+                    "Node.js": "🟢",
+                    "PostgreSQL": "🐘",
+                    "MongoDB": "🍃",
+                    "Google Cloud Platform": "☁️",
+                    "AWS": "🟠",
+                    "Vercel": "▲",
+                    "Railway": "🚂",
+                    "Supabase": "⚡",
+                    "Firebase": "🔥"
+                  };
+                  
+                  return (
+                    <Badge 
+                      key={j} 
+                      variant="secondary" 
+                      className="text-xs hover:bg-primary/10 hover:text-primary hover:scale-105 transition-all duration-300 cursor-pointer flex items-center gap-1"
+                    >
+                      <span className="text-sm">{techLogos[tech] || "🔧"}</span>
+                      <span>{tech}</span>
+                    </Badge>
+                  );
+                })}
               </div>
             </div>
           ))}

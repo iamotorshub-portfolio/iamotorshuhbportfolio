@@ -10,7 +10,7 @@ const cases = [
   {
     category: "Automotriz",
     title: "De 25 a 80 Consultas Mensuales",
-    client: "Concesionario Ford Bahía Blanca",
+    client: "Ford Brenson de CABA",
     image: caseFord,
     results: [
       { metric: "+220%", label: "Consultas" },

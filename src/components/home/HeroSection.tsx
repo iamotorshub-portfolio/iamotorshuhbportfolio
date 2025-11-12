@@ -1,13 +1,35 @@
 import { Button } from "@/components/ui/button";
 import { Calendar, PlayCircle, Sparkles, CheckCircle } from "lucide-react";
-import { FloatingText } from "@/components/ui/floating-text";
-import { ShimmerText } from "@/components/ui/text-reveal";
-import heroDashboard from "@/assets/hero-dashboard.jpg";
+import { useState, useEffect } from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import web1 from "@/assets/portfolio/web-1.jpg";
+import web2 from "@/assets/portfolio/web-2.jpg";
+import web3 from "@/assets/portfolio/web-3.jpg";
+import web4 from "@/assets/portfolio/web-4.jpg";
+import web5 from "@/assets/portfolio/web-5.jpg";
+import web6 from "@/assets/portfolio/web-6.jpg";
+
+const portfolioImages = [web1, web2, web3, web4, web5, web6];
 
 export const HeroSection = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % portfolioImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-secondary via-secondary-light to-secondary py-20 md:py-32">
-      {/* Animated background mesh with movement */}
+    <section className="relative overflow-hidden bg-gradient-to-br from-secondary via-secondary-light to-secondary py-12 md:py-20">
+      {/* Animated background mesh */}
       <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:30px_30px] animate-pulse" />
       
       {/* Gradient orbs */}
@@ -15,107 +37,97 @@ export const HeroSection = () => {
       <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-info/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Content */}
-          <div className="space-y-8">
-            {/* Badge with glow */}
-            <FloatingText delay={0}>
-              <div className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium border border-primary/20 hover:bg-primary/20 transition-all duration-300 hover:shadow-lg hover:shadow-primary/50">
-                <Sparkles className="h-4 w-4 animate-pulse" />
-                <span>Transformación Digital con IA</span>
-              </div>
-            </FloatingText>
+        {/* Badge - Full Width */}
+        <div className="text-center mb-6 animate-fade-in">
+          <div className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium border border-primary/20 hover:bg-primary/20 transition-all duration-300 hover:shadow-lg hover:shadow-primary/50">
+            <Sparkles className="h-4 w-4 animate-pulse" />
+            <span>Transformación Digital con IA</span>
+          </div>
+        </div>
 
-            {/* Headline with shimmer animation */}
-            <FloatingText delay={200}>
-              <h1 className="text-4xl md:text-6xl font-black leading-tight text-white">
-                Transformamos Empresas en{" "}
-                <ShimmerText 
-                  text="Máquinas de Ventas" 
-                  className="text-4xl md:text-6xl font-black"
-                />{" "}
-                con Inteligencia Artificial
-              </h1>
-            </FloatingText>
+        {/* Headline - Full Width in 2 Lines */}
+        <div className="text-center mb-8 animate-fade-in" style={{ animationDelay: '200ms' }}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight text-white max-w-7xl mx-auto">
+            Transformamos Empresas en{" "}
+            <span className="bg-gradient-to-r from-primary via-info to-primary bg-clip-text text-transparent animate-pulse">
+              Máquinas de Ventas
+            </span>{" "}
+            con Inteligencia Artificial
+          </h1>
+        </div>
 
-            {/* Subheadline */}
-            <FloatingText delay={400}>
-              <p className="text-lg md:text-xl text-white/80">
-                Asistentes IA, Storyboards Cinematográficos, Automatización y Apps Personalizadas 
-                para Empresas de Latinoamérica
-              </p>
-            </FloatingText>
-
-            {/* CTAs with hover effects */}
-            <FloatingText delay={600}>
-              <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white shadow-lg shadow-primary/50 hover:shadow-primary/70 hover:scale-105 transition-all duration-300"
-                asChild
-              >
-                <a href="https://calendly.com/contacto-iamotorshub/30min" target="_blank" rel="noopener noreferrer">
-                  <Calendar className="mr-2 h-5 w-5" />
-                  Agendar Consulta Gratuita
-                </a>
-              </Button>
-              <Button 
-                size="lg" 
-                variant="secondary"
-                className="bg-white/90 text-secondary hover:bg-white hover:scale-105 transition-all duration-300 border-2 border-white shadow-lg"
-                asChild
-              >
-                <a href="#portfolio">
-                  <PlayCircle className="mr-2 h-5 w-5" />
-                  Ver Casos de Éxito
-                </a>
-              </Button>
-              </div>
-            </FloatingText>
-
-            {/* Trust indicators with animation */}
-            <FloatingText delay={800}>
-              <div className="flex flex-wrap gap-6 pt-4">
-              {[
-                { label: "170+ Leads Generados" },
-                { label: "25-30% Tasa Respuesta" },
-                { label: "ROI hasta 3500%" },
-              ].map((item, i) => (
-                <div 
-                  key={i} 
-                  className="flex items-center space-x-2 text-white/90 animate-fade-in hover:scale-110 transition-transform duration-300"
-                  style={{ animationDelay: `${0.6 + i * 0.1}s` }}
-                >
-                  <CheckCircle className="h-5 w-5 text-success animate-pulse" />
-                  <span className="text-sm font-medium">{item.label}</span>
-                </div>
+        {/* Portfolio Carousel Banner */}
+        <div className="mb-8 animate-fade-in" style={{ animationDelay: '400ms' }}>
+          <Carousel className="w-full max-w-6xl mx-auto">
+            <CarouselContent>
+              {portfolioImages.map((image, index) => (
+                <CarouselItem key={index}>
+                  <div className="relative h-[300px] md:h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl shadow-primary/30 border border-white/10">
+                    <img 
+                      src={image}
+                      alt={`Proyecto ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-secondary/60 via-transparent to-transparent" />
+                  </div>
+                </CarouselItem>
               ))}
-              </div>
-            </FloatingText>
+            </CarouselContent>
+            <CarouselPrevious className="left-4" />
+            <CarouselNext className="right-4" />
+          </Carousel>
+        </div>
+
+        {/* Content Below Banner - Horizontal Layout */}
+        <div className="max-w-6xl mx-auto space-y-6">
+          {/* Subheadline */}
+          <div className="text-center animate-fade-in" style={{ animationDelay: '600ms' }}>
+            <p className="text-base md:text-lg lg:text-xl text-white/90 font-medium">
+              Asistentes IA, Storyboards Cinematográficos, Automatización y Apps Personalizadas 
+              para Empresas de Latinoamérica
+            </p>
           </div>
 
-          {/* Visual with 3D effect */}
-          <div className="relative animate-fade-in" style={{ animationDelay: "0.3s" }}>
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-primary/30 border border-white/10 hover:shadow-primary/50 hover:scale-105 transition-all duration-500">
-              <img 
-                src={heroDashboard} 
-                alt="AI Dashboard" 
-                className="w-full h-auto"
-              />
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent" />
-            </div>
-            
-            {/* Floating badges with animation */}
-            <div className="absolute -top-4 -right-4 bg-success text-white px-4 py-2 rounded-lg shadow-lg font-bold text-sm animate-bounce hover:scale-110 transition-transform">
-              +220% Ventas
-            </div>
-            <div className="absolute -bottom-4 -left-4 bg-primary text-white px-4 py-2 rounded-lg shadow-lg font-bold text-sm animate-bounce hover:scale-110 transition-transform" style={{ animationDelay: '0.5s' }}>
-              ROI 1400%
-            </div>
-            
-            {/* Rotating border effect */}
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/50 to-info/50 blur-xl -z-10 animate-pulse" />
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style={{ animationDelay: '800ms' }}>
+            <Button 
+              size="lg" 
+              className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white shadow-lg shadow-primary/50 hover:shadow-primary/70 hover:scale-105 transition-all duration-300 w-full sm:w-auto"
+              asChild
+            >
+              <a href="https://calendly.com/contacto-iamotorshub/30min" target="_blank" rel="noopener noreferrer">
+                <Calendar className="mr-2 h-5 w-5" />
+                Agendar Consulta Gratuita
+              </a>
+            </Button>
+            <Button 
+              size="lg" 
+              variant="secondary"
+              className="bg-white/90 text-secondary hover:bg-white hover:scale-105 transition-all duration-300 border-2 border-white shadow-lg w-full sm:w-auto"
+              asChild
+            >
+              <a href="#portfolio">
+                <PlayCircle className="mr-2 h-5 w-5" />
+                Ver Casos de Éxito
+              </a>
+            </Button>
+          </div>
+
+          {/* Trust indicators */}
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8 pt-4 animate-fade-in" style={{ animationDelay: '1000ms' }}>
+            {[
+              { label: "170+ Leads Generados" },
+              { label: "25-30% Tasa Respuesta" },
+              { label: "ROI hasta 3500%" },
+            ].map((item, i) => (
+              <div 
+                key={i} 
+                className="flex items-center space-x-2 text-white/90 hover:scale-110 transition-transform duration-300"
+              >
+                <CheckCircle className="h-5 w-5 text-success animate-pulse" />
+                <span className="text-sm md:text-base font-medium">{item.label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -205,7 +205,7 @@ export const ServicesCarousel = () => {
                     {currentService.title}
                   </h3>
 
-                  <p className="text-lg text-info font-semibold">
+                  <p className="text-lg text-primary-light font-bold bg-primary/10 px-4 py-2 rounded-lg border border-primary/20 inline-block">
                     {currentService.tagline}
                   </p>
 
@@ -242,7 +242,7 @@ export const ServicesCarousel = () => {
                   <div className="flex flex-col sm:flex-row gap-3">
                     <Button 
                       size="lg" 
-                      className="bg-gradient-to-r from-primary to-info hover:opacity-90 text-white shadow-lg shadow-primary/50"
+                      className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white shadow-lg shadow-primary/50 font-bold"
                       asChild
                     >
                       <Link to={currentService.link}>
@@ -252,8 +252,7 @@ export const ServicesCarousel = () => {
                     </Button>
                     <Button 
                       size="lg" 
-                      variant="outline"
-                      className="border-white/20 text-white hover:bg-white/10"
+                      className="bg-white text-secondary hover:bg-white/90 font-bold shadow-lg"
                       asChild
                     >
                       <a href="https://calendly.com/contacto-iamotorshub/30min" target="_blank" rel="noopener noreferrer">
