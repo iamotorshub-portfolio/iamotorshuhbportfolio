@@ -1,9 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Calendar, MessageCircle, CheckCircle } from "lucide-react";
-
 export const FinalCTA = () => {
-  return (
-    <section className="py-20 relative overflow-hidden">
+  return <section className="py-20 relative overflow-hidden">
       {/* Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-dark to-secondary" />
       <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:30px_30px]" />
@@ -12,7 +10,7 @@ export const FinalCTA = () => {
         <div className="max-w-3xl mx-auto text-center text-white">
           <h2 className="text-4xl md:text-5xl font-black mb-6">
             ¿Listo para{" "}
-            <span className="bg-white text-primary px-3 py-1 rounded-lg">
+            <span className="bg-white px-3 py-1 rounded-lg font-extrabold text-gray-300">
               10x tus Resultados
             </span>{" "}
             con IA?
@@ -25,25 +23,15 @@ export const FinalCTA = () => {
           
           {/* Benefits */}
           <div className="flex flex-wrap justify-center gap-6 mb-10">
-            {[
-              "Sin compromiso",
-              "Diagnóstico personalizado",
-              "ROI estimado"
-            ].map((benefit, i) => (
-              <div key={i} className="flex items-center space-x-2">
+            {["Sin compromiso", "Diagnóstico personalizado", "ROI estimado"].map((benefit, i) => <div key={i} className="flex items-center space-x-2">
                 <CheckCircle className="h-5 w-5 text-success" />
                 <span className="font-medium">{benefit}</span>
-              </div>
-            ))}
+              </div>)}
           </div>
           
           {/* CTA Button */}
           <div className="flex justify-center">
-            <Button 
-              size="lg" 
-              className="bg-white text-primary hover:bg-white/90 font-bold shadow-2xl shadow-black/20 text-lg px-8"
-              asChild
-            >
+            <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-bold shadow-2xl shadow-black/20 text-lg px-8" asChild>
               <a href="https://calendly.com/contacto-iamotorshub/30min" target="_blank" rel="noopener noreferrer">
                 <Calendar className="mr-2 h-5 w-5" />
                 Agendar Consulta Gratuita
@@ -52,6 +40,5 @@ export const FinalCTA = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
