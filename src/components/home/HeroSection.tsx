@@ -28,7 +28,7 @@ export const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-secondary via-secondary-light to-secondary py-12 md:py-20">
+    <section className="relative overflow-hidden bg-gradient-to-br from-secondary via-secondary-light to-secondary py-8 md:py-12">
       {/* Animated background mesh */}
       <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:30px_30px] animate-pulse" />
       
@@ -36,17 +36,17 @@ export const HeroSection = () => {
       <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-info/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="w-full relative z-10">
         {/* Badge - Full Width */}
-        <div className="text-center mb-6 animate-fade-in">
-          <div className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium border border-primary/20 hover:bg-primary/20 transition-all duration-300 hover:shadow-lg hover:shadow-primary/50">
+        <div className="text-center mb-6 animate-fade-in px-4">
+          <div className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium border border-primary/20 hover:bg-primary/20 transition-all duration-300 hover:shadow-lg hover:shadow-primary/50 animate-pulse-ring">
             <Sparkles className="h-4 w-4 animate-pulse" />
             <span>Transformación Digital con IA</span>
           </div>
         </div>
 
         {/* Headline - Full Width in 2 Lines */}
-        <div className="text-center mb-8 animate-fade-in" style={{ animationDelay: '200ms' }}>
+        <div className="text-center mb-8 animate-fade-in px-4" style={{ animationDelay: '200ms' }}>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight text-white max-w-7xl mx-auto">
             Transformamos Empresas en{" "}
             <span className="bg-gradient-to-r from-primary via-info to-primary bg-clip-text text-transparent animate-pulse">
@@ -56,30 +56,30 @@ export const HeroSection = () => {
           </h1>
         </div>
 
-        {/* Portfolio Carousel Banner */}
-        <div className="mb-8 animate-fade-in -mx-4 md:mx-0" style={{ animationDelay: '400ms' }}>
+        {/* Portfolio Carousel Banner - Full Width */}
+        <div className="mb-8 animate-fade-in w-full" style={{ animationDelay: '400ms' }}>
           <Carousel className="w-full">
-            <CarouselContent>
+            <CarouselContent className="-ml-0">
               {portfolioImages.map((image, index) => (
-                <CarouselItem key={index}>
-                  <div className="relative h-[300px] md:h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl shadow-primary/30 border border-white/10">
+                <CarouselItem key={index} className="pl-0">
+                  <div className="relative w-full" style={{ aspectRatio: '21/9' }}>
                     <img 
                       src={image}
                       alt={`Proyecto ${index + 1}`}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-center"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-secondary/60 via-transparent to-transparent" />
                   </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="left-4" />
-            <CarouselNext className="right-4" />
+            <CarouselPrevious className="left-4 bg-white/10 hover:bg-white/20 border-white/20" />
+            <CarouselNext className="right-4 bg-white/10 hover:bg-white/20 border-white/20" />
           </Carousel>
         </div>
 
         {/* Content Below Banner - Horizontal Layout */}
-        <div className="max-w-6xl mx-auto space-y-6">
+        <div className="max-w-6xl mx-auto space-y-6 px-4">
           {/* Subheadline */}
           <div className="text-center animate-fade-in" style={{ animationDelay: '600ms' }}>
             <p className="text-base md:text-lg lg:text-xl text-white/90 font-medium">
@@ -92,7 +92,7 @@ export const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style={{ animationDelay: '800ms' }}>
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white shadow-lg shadow-primary/50 hover:shadow-primary/70 hover:scale-105 transition-all duration-300 w-full sm:w-auto"
+              className="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white shadow-lg shadow-primary/50 w-full sm:w-auto animate-pulse"
               asChild
             >
               <a href="https://calendly.com/contacto-iamotorshub/30min" target="_blank" rel="noopener noreferrer">
@@ -103,7 +103,7 @@ export const HeroSection = () => {
             <Button 
               size="lg" 
               variant="secondary"
-              className="bg-white/90 text-secondary hover:bg-white hover:scale-105 transition-all duration-300 border-2 border-white shadow-lg w-full sm:w-auto"
+              className="bg-white/90 text-secondary hover:bg-white border-2 border-white shadow-lg w-full sm:w-auto"
               asChild
             >
               <a href="#portfolio">
