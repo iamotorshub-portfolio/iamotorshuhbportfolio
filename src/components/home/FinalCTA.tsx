@@ -10,8 +10,12 @@ export const FinalCTA = () => {
         <div className="max-w-3xl mx-auto text-center text-white">
           <h2 className="text-4xl md:text-5xl font-black mb-6">
             ¿Listo para{" "}
-            <span className="bg-white px-3 py-1 rounded-lg font-extrabold text-gray-300">
-              10x tus Resultados
+            <span className="relative inline-block group">
+              <span className="relative z-10 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent animate-shimmer bg-[length:200%_100%] font-extrabold px-3 py-1">
+                multiplicar tus Resultados
+              </span>
+              <span className="absolute inset-0 bg-gradient-to-r from-blue-400/40 via-purple-400/40 to-pink-400/40 blur-xl group-hover:blur-2xl transition-all duration-500 animate-pulse" />
+              <span className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-lg" />
             </span>{" "}
             con IA?
           </h2>

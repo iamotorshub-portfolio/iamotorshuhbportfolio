@@ -8,14 +8,14 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import web1 from "@/assets/portfolio/web-1.jpg";
-import web2 from "@/assets/portfolio/web-2.jpg";
-import web3 from "@/assets/portfolio/web-3.jpg";
-import web4 from "@/assets/portfolio/web-4.jpg";
-import web5 from "@/assets/portfolio/web-5.jpg";
-import web11 from "@/assets/portfolio/web-11.jpg";
+import projectFashion from "@/assets/portfolio/project-fashion.jpg";
+import projectFunnel from "@/assets/portfolio/project-funnel.jpg";
+import projectLeadgen from "@/assets/portfolio/project-leadgen.jpg";
+import projectRealestate from "@/assets/portfolio/project-realestate.jpg";
+import projectRestaurant from "@/assets/portfolio/project-restaurant.jpg";
+import projectStoryboard from "@/assets/portfolio/project-storyboard.jpg";
 
-const portfolioImages = [web1, web2, web3, web4, web5, web11];
+const portfolioImages = [projectFashion, projectFunnel, projectLeadgen, projectRealestate, projectRestaurant, projectStoryboard];
 
 export const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

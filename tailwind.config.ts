@@ -109,12 +109,21 @@ export default {
             boxShadow: "0 0 0 0 rgba(59, 130, 246, 0)",
           },
         },
+        shimmer: {
+          "0%": {
+            backgroundPosition: "200% center",
+          },
+          "100%": {
+            backgroundPosition: "-200% center",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         "pulse-ring": "pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        shimmer: "shimmer 3s linear infinite",
       },
     },
   },
