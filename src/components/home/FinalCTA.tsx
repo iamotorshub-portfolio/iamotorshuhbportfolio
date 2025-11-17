@@ -1,22 +1,48 @@
 import { Button } from "@/components/ui/button";
 import { Calendar, MessageCircle, CheckCircle } from "lucide-react";
+import { useEffect, useState } from "react";
+
+const TypewriterText = ({ text }: { text: string }) => {
+  const [displayText, setDisplayText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
+
+  useEffect(() => {
+    if (currentIndex < text.length) {
+      const timeout = setTimeout(() => {
+        setDisplayText((prev) => prev + text[currentIndex]);
+        setCurrentIndex((prev) => prev + 1);
+      }, 100);
+      return () => clearTimeout(timeout);
+    } else {
+      setIsComplete(true);
+    }
+  }, [currentIndex, text]);
+
+  return (
+    <span className="relative inline-block">
+      <span className="relative z-10 font-extrabold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+        {displayText}
+        {!isComplete && (
+          <span className="animate-pulse ml-1 text-white">|</span>
+        )}
+      </span>
+      <span className="absolute inset-0 bg-gradient-to-r from-blue-400/30 via-purple-400/30 to-pink-400/30 blur-2xl animate-pulse" />
+    </span>
+  );
+};
+
 export const FinalCTA = () => {
   return <section className="py-20 relative overflow-hidden">
       {/* Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-dark to-secondary" />
       <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:30px_30px]" />
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center text-white">
           <h2 className="text-4xl md:text-5xl font-black mb-6">
             ¿Listo para{" "}
-            <span className="relative inline-block group">
-              <span className="relative z-10 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent animate-shimmer bg-[length:200%_100%] font-extrabold px-3 py-1">
-                multiplicar tus Resultados
-              </span>
-              <span className="absolute inset-0 bg-gradient-to-r from-blue-400/40 via-purple-400/40 to-pink-400/40 blur-xl group-hover:blur-2xl transition-all duration-500 animate-pulse" />
-              <span className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-lg" />
-            </span>{" "}
+            <TypewriterText text="multiplicar tus Resultados" />{" "}
             con IA?
           </h2>
           

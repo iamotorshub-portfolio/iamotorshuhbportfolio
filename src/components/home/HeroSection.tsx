@@ -58,15 +58,38 @@ export const HeroSection = () => {
 
         {/* Portfolio Carousel Banner - Full Width */}
         <div className="mb-8 animate-fade-in w-full" style={{ animationDelay: '400ms' }}>
-          <Carousel className="w-full">
+          <Carousel
+            className="w-full"
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            plugins={[
+              {
+                name: "autoplay",
+                init: (embla) => {
+                  const play = () => {
+                    if (embla.canScrollNext()) {
+                      embla.scrollNext();
+                    } else {
+                      embla.scrollTo(0);
+                    }
+                  };
+                  const autoplay = setInterval(play, 4000);
+                  embla.on("destroy", () => clearInterval(autoplay));
+                  embla.on("pointerDown", () => clearInterval(autoplay));
+                },
+              },
+            ]}
+          >
             <CarouselContent className="-ml-0">
               {portfolioImages.map((image, index) => (
                 <CarouselItem key={index} className="pl-0">
                   <div className="relative w-full" style={{ aspectRatio: '21/9' }}>
-                    <img 
+                    <img
                       src={image}
                       alt={`Proyecto ${index + 1}`}
-                      className="w-full h-full object-cover object-center"
+                      className="w-full h-full object-cover object-center transition-all duration-700 ease-in-out"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-secondary/60 via-transparent to-transparent" />
                   </div>
