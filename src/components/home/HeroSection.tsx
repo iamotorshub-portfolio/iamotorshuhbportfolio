@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Calendar, PlayCircle, Sparkles, CheckCircle } from "lucide-react";
-import { useState, useEffect } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -8,6 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 import projectFashion from "@/assets/portfolio/project-fashion.jpg";
 import projectFunnel from "@/assets/portfolio/project-funnel.jpg";
 import projectLeadgen from "@/assets/portfolio/project-leadgen.jpg";
@@ -18,14 +18,6 @@ import projectStoryboard from "@/assets/portfolio/project-storyboard.jpg";
 const portfolioImages = [projectFashion, projectFunnel, projectLeadgen, projectRealestate, projectRestaurant, projectStoryboard];
 
 export const HeroSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % portfolioImages.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-secondary via-secondary-light to-secondary py-8 md:py-12">
@@ -65,21 +57,10 @@ export const HeroSection = () => {
               loop: true,
             }}
             plugins={[
-              {
-                name: "autoplay",
-                init: (embla) => {
-                  const play = () => {
-                    if (embla.canScrollNext()) {
-                      embla.scrollNext();
-                    } else {
-                      embla.scrollTo(0);
-                    }
-                  };
-                  const autoplay = setInterval(play, 4000);
-                  embla.on("destroy", () => clearInterval(autoplay));
-                  embla.on("pointerDown", () => clearInterval(autoplay));
-                },
-              },
+              Autoplay({
+                delay: 4000,
+                stopOnInteraction: true,
+              }),
             ]}
           >
             <CarouselContent className="-ml-0">
