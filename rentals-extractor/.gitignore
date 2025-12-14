@@ -1,0 +1,32 @@
+# Entorno virtual
+.venv/
+venv/
+env/
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Logs
+*.log
+
+# CSV de salida (generados)
+*_enriquecido*.csv
+inmobiliarias_bb_enriquecido_test.csv
+
+# Archivos de test
+*_test.csv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
